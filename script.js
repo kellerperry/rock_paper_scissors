@@ -1,100 +1,48 @@
+let playerScore = 0;
+let computerScore = 0;
 
-// Randomly select and return the computer's choice:
-function getComputerChoice() {
-    const choiceArr = ["rock", "paper", "scissors"];
-    return choiceArr[Math.floor(Math.random() * 3)];
-}
-
-// Initializes round counters
-let playerCounter = 0;
-let computerCounter = 0;
-  
-//Game function call
 game();
 
-
-//Loops through the playRound function five times, announces the winner and resets the counters
 function game() {
-    while((playerCounter + computerCounter) < 5) {
+    while((playerScore + computerScore) < 5) {
         let playerPrompt = prompt("Rock, Paper or Scissors?", "");
         playerSelection = playerPrompt.toLowerCase();
         computerSelection = getComputerChoice();
         
         console.log(playRound(playerSelection, computerSelection));
     }
-    if(computerCounter > playerCounter) {
-        console.log(`Oh no! You lost! ${playerCounter} to ${computerCounter}`);
+    if(computerScore > playerScore) {
+        console.log(`Oh no! You lost! ${playerScore} to ${computerScore}`);
     } else {
-        console.log(`Congratulations! You win! ${playerCounter} to ${computerCounter}`);
+        console.log(`Congratulations! You win! ${playerScore} to ${computerScore}`);
     }
 
-    playerCounter = 0;
-    computerCounter = 0;
+    playerScore = 0;
+    computerScore = 0;
+}
+
+function getComputerChoice() {
+    const choiceArray = ["rock", "paper", "scissors"];
+    return choiceArray[Math.floor(Math.random() * 3)];
 }
 
 
-// One round of Rock, Paper, Scissors
 function playRound(playerSelection, computerSelection) {
     
-    //Capitalizes the first letter of each player's selection
+    //Capitalizes the first letter of each player's selection, for preference
     const prettyPlayerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     const prettyComputerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
 
-    //Compare the competing selections and return a string declaring the winner
+    //Compare selections and return a winner
     if(
         (computerSelection === "rock" && playerSelection === "scissors") ||(computerSelection === "paper" && playerSelection === "rock") || (computerSelection === "scissors" && playerSelection === "paper")) {
-            computerCounter++
+            computerScore++
             return `You lose! ${prettyComputerSelection} beats ${prettyPlayerSelection}`;
     } else if(
         (computerSelection === "rock" && playerSelection === "rock") || (computerSelection === "paper" && playerSelection === "paper") || (computerSelection === "scissors" && playerSelection === "scissors")) {
             return `It's a draw! You both chose ${prettyPlayerSelection}.`
     } else {
-        playerCounter++
+        playerScore++
         return `You win! ${prettyPlayerSelection} beats ${prettyComputerSelection}`
     }
 }
-
-
-
-
-
-/* Compare the user's selection to the computer's selection:
-        Rock is greater than Scissors
-        Scissors is greater than Paper
-        Paper is greater than Rock
-        If Paper equals Paper or Rock equals Rock or Scissors equals Scissors, the game is a draw.
-    Return a string that declares the player a winner, a loser or if the game is a draw.
-Loop through the one round of game to create a five-round game:
-    Initialize a player score counter and a computer score counter
-    After comparing the player's selection to the computer's selection increment the round winner's counter.
-    Log the round-end string to the console.
-    After a fifth round is completed, compare the player's score counter to the computer's score counter.
-    Log the game winner to the console */
-
-
-
-
-
-
-
-/*
-Randomly select and return Rock, Paper or Scissors for the computer's choice:
-    Create an array of strings: "rock", "paper", "scissors";
-    The computer's choice variable gets the randomly selected index from the string array;
-    Return the computer's choice;
-Create one round of rock, paper, scissors
-    Prompt the user for their selection.
-        Revert the user's selection to be case-insensitive;
-        Return the player's selection;
-    Compare the user's selection to the computer's selection:
-        Rock is greater than Scissors
-        Scissors is greater than Paper
-        Paper is greater than Rock
-        If Paper equals Paper or Rock equals Rock or Scissors equals Scissors, the game is a draw.
-    Return a string that declares the player a winner, a loser or if the game is a draw.
-Loop through the one round of game to create a five-round game:
-    Initialize a player score counter and a computer score counter
-    After comparing the player's selection to the computer's selection increment the round winner's counter.
-    Log the round-end string to the console.
-    After a fifth round is completed, compare the player's score counter to the computer's score counter.
-    Log the game winner to the console */
