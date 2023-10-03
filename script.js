@@ -29,20 +29,18 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     
-    //Capitalizes the first letter of each player's selection, for preference
-    const prettyPlayerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-    const prettyComputerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+    const capitalizePlayerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+    const capitalizeComputerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
 
-    //Compare selections and return a winner
     if(
         (computerSelection === "rock" && playerSelection === "scissors") ||(computerSelection === "paper" && playerSelection === "rock") || (computerSelection === "scissors" && playerSelection === "paper")) {
             computerScore++
-            return `You lose! ${prettyComputerSelection} beats ${prettyPlayerSelection}`;
+            return `You lose! ${capitalizeComputerSelection} beats ${capitalizePlayerSelection}`;
     } else if(
         (computerSelection === "rock" && playerSelection === "rock") || (computerSelection === "paper" && playerSelection === "paper") || (computerSelection === "scissors" && playerSelection === "scissors")) {
-            return `It's a draw! You both chose ${prettyPlayerSelection}.`
+            return `It's a draw! You both chose ${capitalizePlayerSelection}.`
     } else {
         playerScore++
-        return `You win! ${prettyPlayerSelection} beats ${prettyComputerSelection}`
+        return `You win! ${capitalizePlayerSelection} beats ${capitalizeComputerSelection}`
     }
 }
