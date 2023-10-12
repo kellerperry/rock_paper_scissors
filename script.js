@@ -1,11 +1,48 @@
 let playerScore = 0;
 let computerScore = 0;
 
-game();
+let scoreBox = document.querySelector('#display-score');
+let score = document.querySelector("#score");
+let selectionBox = document.querySelector('#selection-box');
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
+
+score.innerText = `Player Score: ${playerScore}
+    Computer Score: ${computerScore}`;
+score.style.backgroundColor = 'pink';
+scoreBox.appendChild(score);
+
+
+
+
+selectionBox.addEventListener('click', (event) => {
+    let target = event.target;
+
+    switch(target.id) {
+        case 'rock' :
+            playerSelection = 'rock';
+            break;
+        case 'paper' :
+            playerSelection = 'paper';
+            break;
+        case 'scissors' :
+            playerSelection = 'scissors';
+            break;
+    }
+
+    console.log(playRound(playerSelection, getComputerChoice()));
+
+
+})
+
+// game();
 
 function game() {
+    
+    
     while((playerScore + computerScore) < 5) {
-        let playerPrompt = prompt("Rock, Paper or Scissors?", "");
+        // let playerPrompt = prompt("Rock, Paper or Scissors?", "");
         playerSelection = playerPrompt.toLowerCase();
         computerSelection = getComputerChoice();
         
