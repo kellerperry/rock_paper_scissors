@@ -3,6 +3,7 @@ let computerScore = 0;
 
 let scoreBox = document.querySelector('#display-score');
 let score = document.querySelector("#score");
+let results = document.querySelector("#results");
 let selectionBox = document.querySelector('#selection-box');
 let rock = document.querySelector("#rock");
 let paper = document.querySelector("#paper");
@@ -12,13 +13,12 @@ score.innerText = `Player Score: ${playerScore}
     Computer Score: ${computerScore}`;
 score.style.backgroundColor = 'pink';
 scoreBox.appendChild(score);
-
+scoreBox.appendChild(results);
 
 
 
 selectionBox.addEventListener('click', (event) => {
     let target = event.target;
-
     switch(target.id) {
         case 'rock' :
             playerSelection = 'rock';
@@ -31,10 +31,11 @@ selectionBox.addEventListener('click', (event) => {
             break;
     }
 
-    console.log(playRound(playerSelection, getComputerChoice()));
-
-
+    let roundResults = playRound(playerSelection, getComputerChoice());
+    results.innerHTML = `${roundResults}`;
+    scoreBox.appendChild(results);
 })
+
 
 // game();
 
@@ -49,9 +50,9 @@ function game() {
         console.log(playRound(playerSelection, computerSelection));
     }
     if(computerScore > playerScore) {
-        console.log(`Oh no! You lost! ${playerScore} to ${computerScore}`);
+        results.innerText = `Oh no! You lost! ${playerScore} to ${computerScore}`;
     } else {
-        console.log(`Congratulations! You win! ${playerScore} to ${computerScore}`);
+        results.innerText = `Congratulations! You win! ${playerScore} to ${computerScore}`;
     }
 
     playerScore = 0;
