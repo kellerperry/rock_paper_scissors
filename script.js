@@ -11,10 +11,9 @@ let scissors = document.querySelector("#scissors");
 
 score.innerText = `Player Score: ${playerScore}
     Computer Score: ${computerScore}`;
-score.style.backgroundColor = 'pink';
+    
 scoreBox.appendChild(score);
 scoreBox.appendChild(results);
-
 
 
 selectionBox.addEventListener('click', (event) => {
@@ -30,40 +29,31 @@ selectionBox.addEventListener('click', (event) => {
             playerSelection = 'scissors';
             break;
     }
-
+    
+    
     let roundResults = playRound(playerSelection, getComputerChoice());
     results.innerHTML = `${roundResults}`;
     scoreBox.appendChild(results);
+
+    score.innerText = `Player Score: ${playerScore}
+    Computer Score: ${computerScore}`;
+    scoreBox.appendChild(score);
+
+    if(computerScore === 5 || playerScore === 5) {
+        if(computerScore > playerScore) {
+            alert(`Oh no! You lost the game! ${playerScore} to ${computerScore}`);
+        } else {
+            alert(`Congratulations! You win the game! ${playerScore} to ${computerScore}`);
+        }
+    }
+
 })
 
-
-// game();
-
-function game() {
-    
-    
-    while((playerScore + computerScore) < 5) {
-        // let playerPrompt = prompt("Rock, Paper or Scissors?", "");
-        playerSelection = playerPrompt.toLowerCase();
-        computerSelection = getComputerChoice();
-        
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    if(computerScore > playerScore) {
-        results.innerText = `Oh no! You lost! ${playerScore} to ${computerScore}`;
-    } else {
-        results.innerText = `Congratulations! You win! ${playerScore} to ${computerScore}`;
-    }
-
-    playerScore = 0;
-    computerScore = 0;
-}
 
 function getComputerChoice() {
     const choiceArray = ["rock", "paper", "scissors"];
     return choiceArray[Math.floor(Math.random() * 3)];
 }
-
 
 function playRound(playerSelection, computerSelection) {
     
